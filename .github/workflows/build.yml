@@ -1,0 +1,26 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  lintTest:
+    name: lintTest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repostitory
+        uses: actions/checkout@v1
+      - name: Install Dependencies
+        working-directory: ./vaincre-peur-app
+        run: |
+          echo "Running Install Dependencies"
+          npm install
+      - name: Run Linting
+        working-directory: ./vaincre-peur-app
+        run: |
+          echo "Running Linting Test"
+          npm run lint
+        env:
+          CI: true
